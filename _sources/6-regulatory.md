@@ -16,13 +16,13 @@ Open banking regulations are rules and guidelines that regulatory bodies establi
 
 - Regulatory oversight: Open banking regulations often require businesses to practice regular reporting, adhere to operational standards, and participate in security audits."
 
-### “Who regulates open banking?
+#### “Who regulates open banking?
 
 United States: Currently, there is no comprehensive federal regulation for open banking in the US. In October 2023, the Consumer Financial Protection Bureau (CFPB) proposed a rule to implement Section 1033 of the Consumer Financial Protection Act, which would give consumers the right to access and share their financial data. This rule, if finalized, will establish a federal framework for open banking, and the CFPB will oversee its implementation. Meanwhile, several states have introduced or are considering their own open banking legislation, and industry-led organizations such as the Financial Data Exchange (FDX) have established voluntary data-sharing standards.”
 
 [![Rohit Chopra](./assets/rohit_chopra.jpg "Rohit Chopra")](https://www.bloomberg.com/news/articles/2021-09-30/biden-cfpb-pick-chopra-confirmed-to-lead-consumer-watchdog)
 
-### What are open banking standards?
+#### What are open banking standards?
 "Open banking standards are a set of technical specifications and guidelines that enable safe and effective data sharing between banks and authorized TPPs. These standards ensure interoperability, security, and consumer protection in the open banking process.
 Key components of open banking standards
 

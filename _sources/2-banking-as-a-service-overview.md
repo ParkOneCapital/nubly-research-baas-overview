@@ -26,8 +26,6 @@ The bank's system communicates via APIs and webhooks with that of the airline, e
 
 source: https://www.finextra.com/blogposting/20099/what-the-hell-is-banking-as-a-service-and-what-is-it-not
 
-[![BaaS Stack](./assets/baas_3.png "BaaS Stack")](https://sacra.com/research/banking-as-a-service-the-twilio-of-embedded-finance/)
-
 [![BaaS Overview](./assets/baas_overview.jpg "BaaS Overview")](https://sacra.com/research/banking-as-a-service-the-twilio-of-embedded-finance/)
 
 [![Unbundling the BaaS Market](./assets/baas_4.jpg "Unbundling the BaaS Market")](https://research.contrary.com/deep-dive/great-bank-unbundling)
