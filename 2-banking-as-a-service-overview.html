@@ -1,0 +1,564 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Banking-as-a-Service (BaaS) Overview &#8212; My sample book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '2-banking-as-a-service-overview';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Open Banking vs. Banking-as-a-Service" href="3-open-banking-vs-baas.html" />
+    <link rel="prev" title="The Current State of Banking-as-a-Service" href="1-open-banking.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="cover-page.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="My sample book - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="My sample book - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="cover-page.html">
+                    The Current State of Banking-as-a-Service
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="1-open-banking.html">The Current State of Banking-as-a-Service</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Banking-as-a-Service (BaaS) Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-open-banking-vs-baas.html">Open Banking vs. Banking-as-a-Service</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4-embedded-finance.html">Embedded Finance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-beyond-the-api-the-accounting-of-baas.html">Beyond the API: The Accounting of BaaS (FBO vs. On-Core)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6-regulatory.html">Regulatory</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="7-current-trends-in-baas.html">Current Trends in BaaS</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="9-disclaimer.html">Disclaimer</a></li>
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2F2-banking-as-a-service-overview.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/2-banking-as-a-service-overview.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Banking-as-a-Service (BaaS) Overview</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hair-flair-case-study">Hair Flair Case Study</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="banking-as-a-service-baas-overview">
+<h1>Banking-as-a-Service (BaaS) Overview<a class="headerlink" href="#banking-as-a-service-baas-overview" title="Link to this heading">#</a></h1>
+<p>“BaaS is a component of Open Banking. BaaS is the products financial institutions offer to non-financial and financial companies to enable banking services. It facilitates bank functionality supported by the infrastructure provided by the licensed bank’s technology layer. Essentially, BaaS ecosystems allow non-banks to offer banking services.”</p>
+<p>sources: <a class="reference external" href="https://www.getevolved.com/openbanking/baas-vs-open-banking/">https://www.getevolved.com/openbanking/baas-vs-open-banking/</a>,  <a class="reference external" href="https://www.mastercardservices.com/en/advisors/sustainability-financial-inclusion-consulting/insights/its-all-turned-fintech-banking">https://www.mastercardservices.com/en/advisors/sustainability-financial-inclusion-consulting/insights/its-all-turned-fintech-banking</a></p>
+<p><a class="reference external" href="https://www.mastercardservices.com/en/advisors/sustainability-financial-inclusion-consulting/insights/its-all-turned-fintech-banking"><img alt="BaaS" src="_images/baas_1.png" /></a></p>
+<p>“A recent buzzword in the anything “as a service” trend. BaaS may be neatly defined as the opening up of banking capabilities to third parties. The concept is not new. White-label partnerships between banks and public-facing consumer brands go back more than a decade. But they were expensive to deploy until application programming interfaces (APIs) allowed banks to easily connect with third parties.</p>
+<p>One definition of open banking is the permissioned opening up of access to account data and services via APIs. That compares with BaaS as the opening up of banking capabilities. Yet any data sharing is usually tied to other banking capabilities to create an effective value proposition. The relationship technically keeps BaaS as a subset of open banking, but it effectively accords almost all activity to BaaS.</p>
+<p>As “API first” becomes the rallying cry to replace “digital first,” a proliferation of BaaS will result. Initial BaaS partnerships were between banks and API-first fintech companies. More recently, API-first tech companies are entering into BaaS partnerships. These partnerships will potentially extend to all companies in the future that adopt API-based business models.”</p>
+<p><a class="reference external" href="https://sacra.com/research/banking-as-a-service-the-twilio-of-embedded-finance/"><img alt="How BaaS Works" src="_images/baas_2.jpg" /></a></p>
+<p>“The best way to explain Banking as a Service is by means of an example. Imagine for a moment that you are the manager of an airline. You are facing stark competition and you would like to strengthen your customer loyalty. If you could offer your customers, say, a debit card, you could award them loyalty points whenever they pay with their card. Then, each time your customers use their card, they would interact with your brand. By analyzing your customers’ spending behavior, you could understand them better and offer them more tailored services.</p>
+<p>Or what about if you could offer your customers an online loan for their flight tickets directly on your website? This way, your customers could finance their holiday without ever having to interrupt their customer journey. You could increase the number of flight tickets you sell and directly influence the amount your customers spend. A loan also represents a much closer customer relationship with far more touchpoints than just a single sale.</p>
+<p>There are dozens of ways of how non-banks can improve their customer experience and boost their revenue by offering their own banking services. However, if you want to offer banking services, effectively every government in the world requires you to hold a banking license. And due to the systemic relevance of banks to the functioning of the economy, such a licence is difficult to obtain. Acquiring a licence imposes not only significant capital requirements, but more importantly compliance with strict regulations on money laundering, banking secrecy and deposit protection, to name a few. This is where Banking as a Service comes in.</p>
+<p>Banking as a Service (or BaaS for short) describes a model in which licensed banks integrate their digital banking services directly into the products of other non-bank businesses. This way, a non-bank business, such as your airline, can offer its customers digital banking services such as mobile bank accounts, debit cards, loans and payment services, without needing to acquire a banking licence of their own.</p>
+<p>The bank’s system communicates via APIs and webhooks with that of the airline, enabling your customer to access banking services directly through your airline’s website or app. Your airline never really touches the customer’s money, it acts simply as an intermediary, meaning it is not burdened by any of the regulatory duties a bank has to fulfil. Thus, with BaaS, pretty much any business can become a banking provider with nothing but a few lines of code. That’s why BaaS is also often referred to as white-label banking, since the banking services are delivered through the branded product of the non-bank. Next to Solarisbank, other providers in Europe’s growing BaaS landscape include ClearBank, RailsBank and Starling Bank. Across the pond, established banking giants are also launching BaaS projects next to their existing offering, such as BBVA in the US.”</p>
+<p>source: <a class="reference external" href="https://www.finextra.com/blogposting/20099/what-the-hell-is-banking-as-a-service-and-what-is-it-not">https://www.finextra.com/blogposting/20099/what-the-hell-is-banking-as-a-service-and-what-is-it-not</a></p>
+<p><a class="reference external" href="https://sacra.com/research/banking-as-a-service-the-twilio-of-embedded-finance/"><img alt="BaaS Stack" src="_images/baas_3.png" /></a></p>
+<p><a class="reference external" href="https://sacra.com/research/banking-as-a-service-the-twilio-of-embedded-finance/"><img alt="BaaS Overview" src="_images/baas_overview.jpg" /></a></p>
+<p><a class="reference external" href="https://research.contrary.com/deep-dive/great-bank-unbundling"><img alt="Unbundling the BaaS Market" src="_images/baas_4.jpg" /></a></p>
+<section id="hair-flair-case-study">
+<h2>Hair Flair Case Study<a class="headerlink" href="#hair-flair-case-study" title="Link to this heading">#</a></h2>
+<p>“Here’s a specific example of how BaaS works for platforms: Imagine a platform that offers appointment software and payment processing for salons and barbershops (let’s call them The Brush).</p>
+<p>Let’s take one of The Brush’s customers, Hair Flair. Hair Flair has used The Brush for three years to manage appointments and collect payments from clients. When Hair Flair wants additional financial services to run their business, they could have two options: 1) work with banks directly or 2) access the financial services via The Brush.</p>
+<p>Hair Flair just opened their second location and the salon owners first need a place to store the funds they use to pay their stylists. To open a bank account, they have to go to a financial institution, like a local brick-and-mortar bank, and share their business information.</p>
+<p><a class="reference external" href="https://stripe.com/guides/introduction-to-banking-as-a-service"><img alt="Hair Flair Case Study 1" src="_images/baas_case_study_1.png" /></a></p>
+<p>If Hair Flair isn’t approved for a business account, they’ll have to open a personal bank account, intermingling their business and personal finances. In this case, their account is created at the brick-and-mortar bank, but they now need to manage the flow of funds, moving money from their income on The Brush to their new account—and constantly waiting between two to three business days for money to settle before paying their employees.</p>
+<p>The salon owners also need capital to invest in marketing and studio renovations. They could apply for a loan from the same financial institution where they opened their bank account, but they end up finding a lower interest rate loan from another local bank. They apply for the loan in person and fill out a lengthy application with their business information. Unfortunately, since the bank isn’t familiar with Hair Flair, or the typical cash flow that’s expected for salons, Hair Flair isn’t approved for the loan. They apply for a loan at two more banks and are approved for one a few months later.</p>
+<p>Hair Flair also has a lot of expenses with their new location. Rather than using their personal card, they decide to apply for a business credit card to purchase new equipment and supplies.</p>
+<p><a class="reference external" href="https://stripe.com/guides/introduction-to-banking-as-a-service"><img alt="Hair Flair Case Study 2" src="_images/baas_case_study_2.png" /></a></p>
+<p>They look for a card with low interest rates and end up getting their card at yet another bank, separate from where they applied for the loan and opened an account. They share all of their information again and now need to figure out how to manage money on the card with the funds from The Brush or from their financial account</p>
+<p>Beyond setting up accounts at different banks, the owners at Hair Flair spend time each week reconciling finances across these accounts to track their money, pay bills, and avoid bounced checks. It also means a significant portion of their earnings may be tied up in transfers before they’re able to spend it.</p>
+<p>The Brush, which started as appointment software for salons, now allows customers to access banking features, including the ability to process payments, access capital, get business cards, and open financial accounts—all in one place. All these benefits are on top of The Brush’s core scheduling and appointment-booking features.</p>
+<p>Because Hair Flair processes all client payments on The Brush, The Brush has a complete understanding of the salon’s financial history, and the platform inherently understands the salon industry and typical capital needs. This time, when Hair Flair applies for a loan, The Brush’s bank partner determines Hair Flair’s eligibility based on Hair Flair’s payment volume and history on their platform and approves the loan the next day. The capital becomes available on Hair Flair’s financial account they have through The Brush, without having to submit extra paperwork.</p>
+<p>And Hair Flair can easily spend that extra capital on their business card they have through The Brush. The card is tied to their financial account and can access all of their funds (earned and borrowed) in one place. Funds are immediately available, so they can use their card as soon as clients pay for their services. They can use the card to pay for business supplies and expenses and, if the platform decides to do so, they can earn rewards as they spend (like getting money back on salon-related purchases or receiving a free month of The Brush).</p>
+<p>And lastly, the owners at Hair Flair save hours each month reconciling finances. With all financial activity (customer payments, loans, and business expenses) in one place on The Brush’s platform, the owners can always access up-to-date financial reports without bouncing between different tools and systems. They also don’t have to worry about forgetting a transfer or missing a payment on a loan. The Brush is Hair Flair’s one-stop shop to run their whole business.”</p>
+<p>source: <a class="reference external" href="https://stripe.com/guides/introduction-to-banking-as-a-service">https://stripe.com/guides/introduction-to-banking-as-a-service</a></p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="1-open-banking.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">The Current State of Banking-as-a-Service</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="3-open-banking-vs-baas.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Open Banking vs. Banking-as-a-Service</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hair-flair-case-study">Hair Flair Case Study</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The Jupyter Book Community
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

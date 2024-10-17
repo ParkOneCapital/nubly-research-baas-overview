@@ -1,0 +1,651 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Beyond the API: The Accounting of BaaS (FBO vs. On-Core) &#8212; My sample book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '5-beyond-the-api-the-accounting-of-baas';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Regulatory" href="6-regulatory.html" />
+    <link rel="prev" title="Embedded Finance" href="4-embedded-finance.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="cover-page.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="My sample book - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="My sample book - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="cover-page.html">
+                    The Current State of Banking-as-a-Service
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="1-open-banking.html">The Current State of Banking-as-a-Service</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2-banking-as-a-service-overview.html">Banking-as-a-Service (BaaS) Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-open-banking-vs-baas.html">Open Banking vs. Banking-as-a-Service</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4-embedded-finance.html">Embedded Finance</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Beyond the API: The Accounting of BaaS (FBO vs. On-Core)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6-regulatory.html">Regulatory</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="7-current-trends-in-baas.html">Current Trends in BaaS</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="9-disclaimer.html">Disclaimer</a></li>
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2F5-beyond-the-api-the-accounting-of-baas.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/5-beyond-the-api-the-accounting-of-baas.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Beyond the API: The Accounting of BaaS (FBO vs. On-Core)</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-for-benefit-of-accounting-model">The For-Benefit-Of Accounting Model</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-do-fbo-accounts-work">How do FBO accounts work?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-does-an-fbo-account-look-like-in-practice">What does an FBO account look like in practice?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#types-of-fbo-accounts">Types of FBO Accounts</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fbo-data-flow">FBO Data flow</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#benefits-of-an-fbo-account">“Benefits of an FBO account</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#drawbacks-to-fbo-account">Drawbacks to FBO account</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-on-core-accounting-model">The On-Core Accounting Model</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-on-core-accounts-work">How on-core accounts work</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#on-core-data-flow">On-core data flow</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#benefits-of-on-core-accounts">“Benefits of on-core accounts</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#drawbacks-of-on-core-accounts">Drawbacks of on-core accounts</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="beyond-the-api-the-accounting-of-baas-fbo-vs-on-core">
+<h1>Beyond the API: The Accounting of BaaS (FBO vs. On-Core)<a class="headerlink" href="#beyond-the-api-the-accounting-of-baas-fbo-vs-on-core" title="Link to this heading">#</a></h1>
+<p>“What is the difference between FBO and on-core banking?</p>
+<p>At a high level, on-core accounts allow you to leverage the bank’s existing infrastructure in a meaningful way and lead to potentially less work or obligations to open and maintain. However, the clear offset to this is a potentially limited ability to customize certain features of a product offering. A great on-core use case could be a white-labeled or co-branded non-fintech embedding bank accounts in their product as a side perk, or just offering one or a couple of peripheral financial tools.</p>
+<p>FBO accounts, on the other hand, require more responsibility from the company managing the account, but also allow for greater customization. The FBO route can be attractive for companies offering bank accounts and various financial tools as central features in their product.”</p>
+<p>source: <a class="reference external" href="https://www.treasuryprime.com/blog/whats-an-fbo">https://www.treasuryprime.com/blog/whats-an-fbo</a></p>
+<section id="the-for-benefit-of-accounting-model">
+<h2>The For-Benefit-Of Accounting Model<a class="headerlink" href="#the-for-benefit-of-accounting-model" title="Link to this heading">#</a></h2>
+<p><a class="reference external" href="https://www.moderntreasury.com/questions/what-are-the-benefits-of-an-fbo-account"><img alt="FBO Example" src="_images/fbo_1.png" /></a></p>
+<p>“An FBO account, or a For Benefit Of account, allows a company to manage funds on behalf of—or for the benefit of—one or more of their users, without assuming legal ownership of the account.</p>
+<p>What does that mean for business owners? At a high level, FBO accounts enable businesses to manage their clients’ money without the costly regulations that can come with certain types of money transmission.</p>
+<p>While FBOs now include the digital transfer of funds, the concept dates back to fiduciary agreements around feudal land ownership in the twelfth century. Since then, managing an asset of value on someone else’s behalf has evolved into many modern legal arrangements, including bank accounts for children on behalf of their parents, wills, trust funds, and more.</p>
+<p>Before a company decides to open an FBO account, it’s important that they do their due diligence. This includes clarifying their needs with legal counsel first and more.</p>
+<section id="how-do-fbo-accounts-work">
+<h3>How do FBO accounts work?<a class="headerlink" href="#how-do-fbo-accounts-work" title="Link to this heading">#</a></h3>
+<p>Imagine your FBO account as a hotel building. From the outside, there are many windows that represent your different clients with their own sub-accounts, also known as virtual accounts.</p>
+<p>For example, say you want to send money to Olivia in the penthouse suite by attaching a check to a paper airplane and sending it through Olivia’s window. Think of her floor and room number as her account and routing number—in other words, they’re unique to her virtual account under the FBO.</p>
+<p>Now imagine that all the money that comes through these separate windows exists in a large pile on the lobby floor, in what’s known as a pooled account. Olivia is only concerned with the money she receives in her virtual account. From the bank’s perspective, however, all the money from these different virtual accounts is available in one place. In other words, all the money in the FBO account is fungible.</p>
+<p>That said, it’s the bank’s responsibility to track money that comes and goes from this pooled account. This tracking system is like a doorman, who functions as a ledger, by organizing funds and providing visibility. If funds are distributed to any one room, or virtual account, the doorman makes a deduction. He knows how much money is coming and going from the entire hotel, or the account at large.</p>
+</section>
+<section id="what-does-an-fbo-account-look-like-in-practice">
+<h3>What does an FBO account look like in practice?<a class="headerlink" href="#what-does-an-fbo-account-look-like-in-practice" title="Link to this heading">#</a></h3>
+<p>Let’s say a neobank, Peanut Butter, opens an FBO account at a bank called Jelly. Jelly is holding the money on behalf of Peanut Butter. Think of it as Peanut Butter managing the hotel, while Jelly technically owns the hotel, or the FBO account.</p>
+<p>Now, Peanut Butter can provide individual virtual accounts to all of their clients. Each client has their own unique room and floor number, or virtual accounts complete with individual account and routing numbers. Peanut Butter is able to stay organized and keep track of their clients’ payment operations with a ledger software.”</p>
+<p>source: <a class="reference external" href="https://www.moderntreasury.com/learn/what-is-an-fbo-account">https://www.moderntreasury.com/learn/what-is-an-fbo-account</a>, <a class="reference external" href="https://www.moderntreasury.com/questions/what-are-the-benefits-of-an-fbo-account">https://www.moderntreasury.com/questions/what-are-the-benefits-of-an-fbo-account</a></p>
+</section>
+</section>
+<section id="types-of-fbo-accounts">
+<h2>Types of FBO Accounts<a class="headerlink" href="#types-of-fbo-accounts" title="Link to this heading">#</a></h2>
+<p>“There are two ways to operate an FBO setup depending on your BaaS provider.</p>
+<p><a class="reference external" href="https://www.moderntreasury.com/questions/what-are-the-benefits-of-an-fbo-account"><img alt="Dedicated FBO" src="_images/fbo_2.png" /></a></p>
+<p>Traditional “dedicated FBO” approach: The traditional and less risky approach is for the BaaS provider to open a discrete FBO account for each company it partners with. Under this approach, you have your own dedicated FBO account from which to carve virtual accounts for your customers. This is the approach Treasury Prime uses.</p>
+<p><a class="reference external" href="https://www.moderntreasury.com/questions/what-are-the-benefits-of-an-fbo-account"><img alt="Intermingled FBO" src="_images/fbo_3.png" /></a></p>
+<p>Alternative “intermingled FBO” model: Some BaaS providers offer an intermingled FBO model. In this alternative model, the BaaS provider opens one FBO account to service all of its company clients, rather than have each company open an FBO account with the partner bank directly. This arrangement basically means you are sharing risk with other companies, and also that you are all subject to the same one-size-fits-all KYC and compliance operations. In short, this second option can come with higher risk.</p>
+<section id="fbo-data-flow">
+<h3>FBO Data flow<a class="headerlink" href="#fbo-data-flow" title="Link to this heading">#</a></h3>
+<p>In an FBO setup, users interact with their accounts through the user-facing app you have built. The app connects to a banking API layer, which contains a ledger where records of user account activity are held. The ledger is built on top of an FBO account. That FBO account exists on the bank’s core and attaches to the bank’s services.”</p>
+<p><a class="reference external" href="https://www.treasuryprime.com/blog/whats-an-fbo"><img alt="FBO Data Flow" src="_images/fbo_4.png" /></a></p>
+</section>
+<section id="benefits-of-an-fbo-account">
+<h3>“Benefits of an FBO account<a class="headerlink" href="#benefits-of-an-fbo-account" title="Link to this heading">#</a></h3>
+<p>More control over KYC &amp; account approvals: In an on-core setup, your partner bank performs essentially all typical bank services. That means the bank decides whether to approve certain customers, not you; and the bank decides what forms of identification it will accept for KYC. This can limit who you can accept as a customer. In an FBO model, those services can be performed by you with support from the BaaS provider and other compliance partners, and you have more flexibility based on your specific user base and customer risk profiles.</p>
+<p>Faster account opening: Because you have control over the process for opening your customers’ virtual accounts, you can do so faster.
+Can be less expensive than on-core
+More latitude to customize and innovate: Your FBO account holds your customers’ virtual accounts, which means you and your BaaS provider can collaborate on what features you want to offer.
+Easier to mitigate bank partner risk: No one wants to pick a bank partner and build a successful program with them just to rip it all down to move banks. However, sometimes this hard truth is a reality for many reasons that you may not always be able to control.  Treasury Prime accounted for this possibility and built its technology to be bank agnostic. So if you need to switch banks you would not need to rebuild your tech stack, change bank account numbers or learn new procedures.  While some things just can’t be automated, like a change in routing number or end-client acknowledgment of the change, we have made it as painless as possible.</p>
+</section>
+<section id="drawbacks-to-fbo-account">
+<h3>Drawbacks to FBO account<a class="headerlink" href="#drawbacks-to-fbo-account" title="Link to this heading">#</a></h3>
+<p>Increased support responsibility: Because your FBO account holds your customers’ virtual accounts, you are responsible for servicing them. If your customers opened accounts directly on your partner bank’s core, the bank could fully service them.</p>
+<p>Increased reporting requirements: Similar to having increased responsibility for supporting customers’ accounts, you will also be responsible for staying in compliance by reporting information and activity to authorities such as the FDIC.</p>
+<p>Greater responsibility for fraud prevention: Your partner bank can’t see what’s happening within your customers’ virtual accounts. That means it’s up to you to monitor accounts for potential fraudulent activity.”</p>
+<p>source: <a class="reference external" href="https://www.treasuryprime.com/blog/whats-an-fbo">https://www.treasuryprime.com/blog/whats-an-fbo</a></p>
+</section>
+</section>
+<section id="the-on-core-accounting-model">
+<h2>The On-Core Accounting Model<a class="headerlink" href="#the-on-core-accounting-model" title="Link to this heading">#</a></h2>
+<section id="how-on-core-accounts-work">
+<h3>How on-core accounts work<a class="headerlink" href="#how-on-core-accounts-work" title="Link to this heading">#</a></h3>
+<p>“When you opt to offer on-core accounts in your app, the accounts exist directly on the bank’s back-end system for processing daily transactions. That means accounts can potentially do everything the bank’s core allows — and also only what that core allows. Some examples of settings that are commonly global across a bank’s platforms are KYC decisioning, onboarding procedures, incoming funds holds times/rules, overdraft settings, account fees or incoming ACH decisioning. Additionally, the bank has greater visibility into account activity, which allows the bank to participate in customer support and simplifies compliance. Compliance refers to processes that help fintechs and banks stay in line with any number of laws, regulations, or rules imposed by regulators or industry self-regulating organizations.</p>
+</section>
+<section id="on-core-data-flow">
+<h3>On-core data flow<a class="headerlink" href="#on-core-data-flow" title="Link to this heading">#</a></h3>
+<p>In an on-core setup, users interact with their accounts through the user-facing app you have built. The app connects to a banking API layer, which interfaces directly with the bank’s core and, in turn, the bank’s services.”</p>
+<p>source: <a class="reference external" href="https://www.treasuryprime.com/blog/whats-an-fbo">https://www.treasuryprime.com/blog/whats-an-fbo</a></p>
+<p>“On-core accounts require less maintenance from you as an app developer and allow you out-of-the-box access to all of your partner bank’s account services. That said, your features may be limited with this setup. But if you’re embedding financial tools to enhance your app, rather than making them central, on-core accounts can get the job done with less hassle.”</p>
+<p>source: <a class="reference external" href="https://www.treasuryprime.com/blog/whats-an-fbo">https://www.treasuryprime.com/blog/whats-an-fbo</a></p>
+<p><a class="reference external" href="https://www.treasuryprime.com/blog/whats-an-fbo"><img alt="On-Core Data Flow" src="_images/on_core.png" /></a></p>
+</section>
+<section id="benefits-of-on-core-accounts">
+<h3>“Benefits of on-core accounts<a class="headerlink" href="#benefits-of-on-core-accounts" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>All of the bank’s account services out-of-the-box: Your customers essentially have traditional accounts with your partner bank, granting them all the bells and whistles that come with that, without you having to build out those features.</p></li>
+<li><p>Bank-grade KYC and fraud detection: You can leave the process of approaching applicants for accounts and monitoring accounts for fraudulent activity up to your bank.</p></li>
+<li><p>Extra customer support: Because customers have accounts directly with the bank, they can go to the bank for customer support needs that involve account-level issues.</p></li>
+<li><p>Maintained by the bank partner: The bank maintains accounts and updates them as needed.</p></li>
+</ul>
+</section>
+<section id="drawbacks-of-on-core-accounts">
+<h3>Drawbacks of on-core accounts<a class="headerlink" href="#drawbacks-of-on-core-accounts" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Inflexible: Customer accounts opened on-core must follow all bank policies, and can only offer features the bank permits. Ultimately account offerings are dependent on the bank’s existing services and processes.</p></li>
+<li><p>Less control over KYC &amp; account approvals: When customers open accounts directly with the bank on-core, it’s up to the bank what forms of identification to accept and which account applicants to approve.</p></li>
+<li><p>Slower account opening: Whereas with an FBO account you can just issue a virtual account when ready or necessary, with an on-core account your customer must go through the full process your partner bank uses to open accounts.</p></li>
+<li><p>Bank core technology limitations: When accounts are opened on-core, their features are limited to what the bank’s core can handle from a technology standpoint.”</p></li>
+</ul>
+<p>source: <a class="reference external" href="https://www.treasuryprime.com/blog/whats-an-fbo">https://www.treasuryprime.com/blog/whats-an-fbo</a></p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="4-embedded-finance.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Embedded Finance</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="6-regulatory.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Regulatory</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-for-benefit-of-accounting-model">The For-Benefit-Of Accounting Model</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-do-fbo-accounts-work">How do FBO accounts work?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-does-an-fbo-account-look-like-in-practice">What does an FBO account look like in practice?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#types-of-fbo-accounts">Types of FBO Accounts</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fbo-data-flow">FBO Data flow</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#benefits-of-an-fbo-account">“Benefits of an FBO account</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#drawbacks-to-fbo-account">Drawbacks to FBO account</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-on-core-accounting-model">The On-Core Accounting Model</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-on-core-accounts-work">How on-core accounts work</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#on-core-data-flow">On-core data flow</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#benefits-of-on-core-accounts">“Benefits of on-core accounts</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#drawbacks-of-on-core-accounts">Drawbacks of on-core accounts</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The Jupyter Book Community
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

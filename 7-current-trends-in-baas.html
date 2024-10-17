@@ -1,0 +1,637 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Current Trends in BaaS &#8212; My sample book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '7-current-trends-in-baas';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="&lt;no title&gt;" href="8-sources.html" />
+    <link rel="prev" title="Regulatory" href="6-regulatory.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="cover-page.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="My sample book - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="My sample book - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="cover-page.html">
+                    The Current State of Banking-as-a-Service
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="1-open-banking.html">The Current State of Banking-as-a-Service</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2-banking-as-a-service-overview.html">Banking-as-a-Service (BaaS) Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3-open-banking-vs-baas.html">Open Banking vs. Banking-as-a-Service</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4-embedded-finance.html">Embedded Finance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5-beyond-the-api-the-accounting-of-baas.html">Beyond the API: The Accounting of BaaS (FBO vs. On-Core)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6-regulatory.html">Regulatory</a></li>
+
+
+
+
+
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Current Trends in BaaS</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="9-disclaimer.html">Disclaimer</a></li>
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2F7-current-trends-in-baas.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/7-current-trends-in-baas.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Current Trends in BaaS</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Current Trends in BaaS</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#the-great-bank-unbundling">“The Great Bank Unbundling”</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#allowing-community-banks-to-win">Allowing Community Banks To Win</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#banking-as-a-service-still-boosts-banks-deposits-but-has-its-risks">“Banking as a service still boosts banks’ deposits but has its risks”</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#consequences-of-baas-adoption">Consequences of BaaS Adoption:</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#banking-as-a-service-providers-grow-deposits-despite-q1-turmoil">“Banking-as-a-service providers grow deposits despite Q1 turmoil”</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deposits-of-high-quality">Deposits of High Quality:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-unique-focus-on-fee-income">A Unique Focus on Fee Income:</a></li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="current-trends-in-baas">
+<h1>Current Trends in BaaS<a class="headerlink" href="#current-trends-in-baas" title="Link to this heading">#</a></h1>
+</section>
+<section id="the-great-bank-unbundling">
+<h1>“The Great Bank Unbundling”<a class="headerlink" href="#the-great-bank-unbundling" title="Link to this heading">#</a></h1>
+<p>“Since the emergence of the first BaaS providers, some of the world’s largest companies, from Amazon to DoorDash*, have worked directly with BaaS providers to launch financial products for their customers. As a result, the market has experienced significant growth, with some estimating that BaaS will represent a $7 trillion opportunity by 2030.</p>
+<p>As the demand for embedded financial products has risen, it has also been met by an increased supply of partner banks engaging in BaaS. For example, in 2020, there were already more than “30 partner banks representing hundreds of fintech relationships and financial services.” In 2024, that number has already grown to ~120 partner banks.</p>
+<section id="allowing-community-banks-to-win">
+<h2>Allowing Community Banks To Win<a class="headerlink" href="#allowing-community-banks-to-win" title="Link to this heading">#</a></h2>
+<p>So far, community banks that are engaged in BaaS, like Green Dot and Cross River Bank, have benefited significantly from a rise in loans and deposits, as well as falling customer acquisition costs. This has enabled them to outperform the return on assets (ROA) generated by traditional banks. Between 2017 and 2019, partner banks in BaaS were operating “at profitability levels two to three times above average.”</p>
+<p>The core driver behind this improved ROA is that community banks engaging in BaaS are outcompeting their peers as a result of their direct access to millions of customers via non-bank partnerships. The biggest revenue drivers are commercial loans and deposit growth. In fact, some of the highest ROA banks (WebBank, Celtic, CRB) are driven by lending, and often can’t even offer deposit accounts.</p>
+<p><a class="reference external" href="https://research.contrary.com/deep-dive/great-bank-unbundling"><img alt="Partner Bank Returns" src="_images/partner_bank_returns.jpg" /></a></p>
+<p>The data also reinforces the growth opportunity for community banks in BaaS. For example, in Q2 2023, community banks that supported BaaS experienced a median sequential deposit growth rate of 2.2%. In contrast, community banks that did not support BaaS experienced a decline in the growth of deposits by 0.8%.</p>
+<p>This rise in deposits and higher ROA for community banks providing BaaS have ultimately made customer acquisition more affordable, allowing for growth where there had previously been stagnation. Each partner bank has varying revenue streams from BaaS depending on whether they support lending, consumer or commercial accounts, or large-scale card programs that drive interchange.</p>
+<p><a class="reference external" href="https://research.contrary.com/deep-dive/great-bank-unbundling"><img alt="Community Banks Offering BaaS" src="_images/community_banks_offering_baas.jpg" /></a></p>
+<p>By acting as card issuers, BaaS banks receive a cut of interchange from the merchant’s bank on every transaction. While the amount of interchange varies between banks, according to Synctera, non-bank companies typically receive 70% in BaaS partnerships, while the BaaS provider and partner bank share the remaining 30%.</p>
+<p><a class="reference external" href="https://research.contrary.com/deep-dive/great-bank-unbundling"><img alt="Commercial BaaS Revenue Assumptions" src="_images/commercial_baas_revenue_assumptions.jpg" /></a></p>
+<p>Many of these prices can differ significantly depending on a business’s scale or pricing structure. As modeled by Cornerstone Advisors, with these commercial BaaS revenue assumptions, a monthly growth rate of 2%, and 300K commercial accounts, a typical sponsor bank could generate roughly $24 million in annual revenue from BaaS alone.</p>
+<p>That’s a meaningful lift for a typical community bank. In 2023, US community banks generated a total net income of ~<span class="math notranslate nohighlight">\(26.8 billion and there were ~4K community banks. That means the average community bank generated ~\)</span>6.7 million in annual income in 2023. In 2022, Coastal Financial Corp generated 49% of its total net income from BaaS alone. Therefore, with 300 community banks projected to offer BaaS in 2026, BaaS revenue is expected to reach $25.5 billion by 2026.</p>
+<p><a class="reference external" href="https://research.contrary.com/deep-dive/great-bank-unbundling"><img alt="Annual Revenue Potential" src="_images/annual_revenue_potential.jpg" /></a></p>
+<p>Further, many of the benefits that community banks receive from engaging in BaaS arise from second-order effects unrelated to interchange. While most community banks have struggled to attract deposits due to consolidation among national banks like Chase, partnering with non-bank companies that are national in their marketing allows these community banks to gain national reach. This means that they can compete on a national scale.</p>
+<p><a class="reference external" href="https://research.contrary.com/deep-dive/great-bank-unbundling"><img alt="Total BaaS Revenue 2021-2026" src="_images/total_baas_revenue.jpg" /></a></p>
+<p>As a result, community banks across the US are considering whether to engage in partnerships with fintechs and non-bank companies by adding BaaS to their core offering. In a 2022 report, 85% of banking executives stated that they were already implementing or planning to implement BaaS solutions. Since the release of that report, BaaS deployments have jumped globally by 37%.”</p>
+<p>source: <a class="reference external" href="https://research.contrary.com/deep-dive/great-bank-unbundling">https://research.contrary.com/deep-dive/great-bank-unbundling</a></p>
+</section>
+</section>
+<section id="banking-as-a-service-still-boosts-banks-deposits-but-has-its-risks">
+<h1>“Banking as a service still boosts banks’ deposits but has its risks”<a class="headerlink" href="#banking-as-a-service-still-boosts-banks-deposits-but-has-its-risks" title="Link to this heading">#</a></h1>
+<p>“In general, banking as a service (BaaS) seems an ideal partnership. Financial technology companies have proven their ability to innovate and create modern, user-friendly interfaces, with the rapid deposit growth of direct-to-consumer neobanks attesting to this. The banks they partner with have things fintechs often lack, including the back-end architecture for account management, Federal Deposit Insurance Corp. insurance and deep regulatory knowledge.</p>
+<p>BaaS has proven highly successful for some, but there are also costs to consider. The business might require significant up-front tech investment and, as real-life examples have shown, it can take a few years to build and become profitable. Banks might also need to increase their spending substantially on compliance to ensure their fintech partners are adhering to banking regulations.</p>
+<section id="consequences-of-baas-adoption">
+<h2>Consequences of BaaS Adoption:<a class="headerlink" href="#consequences-of-baas-adoption" title="Link to this heading">#</a></h2>
+<p>Low-Cost Deposits:</p>
+<p><a class="reference external" href="https://www.spglobal.com/market-intelligence/en/news-insights/research/banking-as-a-service-still-boosts-banks-deposits-but-has-its-risks"><img alt="Community Banks Offering BaaS QQQ Growth" src="_images/us_community_banks_offering.png" /></a></p>
+<p>Community banks offering banking as a service once again outpaced peers on quarterly deposit growth, with a median sequential growth rate of 2.2% for BaaS banks in the second quarter and a decline of 0.8% for the rest of the US banks below $10 billion in assets.</p>
+<p>Our analysis focuses on banks below $10 billion in assets, since they account for the majority (more than 75%) of the US banks we have identified as offering BaaS.</p>
+<p>Given the expectation for deposit pricing pressures to persist, BaaS seems a particularly enticing proposition, as it can potentially bring in low-cost, non-interest-bearing deposits. Pathward Financial Inc. offers a prime example. As of June 30, 96% of its total deposits were non-interest-bearing and its total cost of deposits was 0.01%, according to an investor presentation. The Sioux Falls, SD-based bank’s BaaS segment has a heavy focus on prepaid cards, which it issues through BaaS partnerships with payments companies.</p>
+<p>That said, BaaS banks are not immune to changes in customer behavior and competitive pressures. Depositors in non-interest-bearing accounts could switch to interest-bearing accounts at any point.</p>
+<p>Often we cannot tell how much of a bank’s business comes from BaaS. But in some cases, we assume that large changes in the overall bank’s results are due to BaaS. Data from Lineage Bank, based in Franklin, Tenn., shows the impact we would expect: Non-interest-bearing deposits jumped from <span class="math notranslate nohighlight">\(19.9 million in the second quarter of 2022 to \)</span>113.4 million in the third quarter of that year.</p>
+<p><a class="reference external" href="https://www.spglobal.com/market-intelligence/en/news-insights/research/banking-as-a-service-still-boosts-banks-deposits-but-has-its-risks"><img alt="Lineage Bank Non-Interest Deposits" src="_images/lineage_bank.png" /></a></p>
+<p>Fee Income:</p>
+<p>BaaS can provide new revenue streams for banks. There are different varieties of such revenue, but interchange fees are a common one. BaaS banks that serve as the issuing bank of credit and debit cards receive interchange fees from the merchant’s bank (known as the acquiring bank) when customers use them to pay for transactions. Typically, the issuing bank gets 30% of the revenue and the fintech partner receives 70%, according to Synctera Inc., a company that helps banks and fintechs create BaaS programs.</p>
+<p><a class="reference external" href="https://www.spglobal.com/market-intelligence/en/news-insights/research/banking-as-a-service-still-boosts-banks-deposits-but-has-its-risks"><img alt="Coastal Financial Profit" src="_images/coastal_bank_profit.png" /></a></p>
+<p>BaaS can meaningfully add to a bank’s bottom line, judging by Coastal Financial Corp.’s results. The Everett, Wash.-based bank generated $19.8 million in net income in 2022 from its BaaS division, dubbed CCBX, which was 49% of its total net income for the period, according to S&amp;P Global Market Intelligence calculations.</p>
+<p>Balance Sheet Diversification:</p>
+<p>BaaS partnerships might offer deposits and loans outside a bank’s traditional customer base. For instance, MVB Financial Corp. has built a sizable deposit base of gaming deposits through relationships with online sports betting sites. The Fairmont, W.Va.-based bank’s gaming deposits increased from less than 4% of total deposits at the end of 2018 to about 12% as of June 30.</p>
+<p>On the asset side of the balance sheet, BaaS can lead to new lending channels. In the case of Coastal Financial, its BaaS segment has a much different loan portfolio composition than its community bank. About 65% of the BaaS division’s gross loans receivable were classified as consumer and other as of June 30, whereas 68% of the community banks were commercial real estate.”</p>
+<p>source: <a class="reference external" href="https://www.spglobal.com/market-intelligence/en/news-insights/research/banking-as-a-service-still-boosts-banks-deposits-but-has-its-risks">https://www.spglobal.com/market-intelligence/en/news-insights/research/banking-as-a-service-still-boosts-banks-deposits-but-has-its-risks</a></p>
+</section>
+</section>
+<section id="banking-as-a-service-providers-grow-deposits-despite-q1-turmoil">
+<h1>“Banking-as-a-service providers grow deposits despite Q1 turmoil”<a class="headerlink" href="#banking-as-a-service-providers-grow-deposits-despite-q1-turmoil" title="Link to this heading">#</a></h1>
+<p>“A group of 42 community banks focused on banking-as-a-service outperformed peers across some key metrics in the first quarter and showed signs of deposit growth resiliency.</p>
+<p>The group’s median net interest margin was 4.11%, compared to 3.41% for all US banks with under $10 billion in total assets, according to data compiled by S&amp;P Global Market Intelligence.</p>
+<p>During the first quarter, banks focused on banking as a service (BaaS) recorded median deposit growth of 4.0% and median loan growth of 3.4% sequentially, while all community banks posted median deposit growth of 0.2% and median loan growth of 1.2%.</p>
+<p>Overall, the US banking industry experienced accelerated deposit outflows with a 3.4% quarter-over-quarter decline, but analysts said the BaaS banks are unlikely to face deposit outflows similar to what caused the failures of Silicon Valley Bank, Signature Bank and First Republic Bank.</p>
+<p>“Our research shows that BaaS banks are growing deposits generally through this industry turmoil,” Michael Perito, an analyst at Keefe Bruyette &amp; Woods Inc., wrote in an email.</p>
+<section id="deposits-of-high-quality">
+<h2>Deposits of High Quality:<a class="headerlink" href="#deposits-of-high-quality" title="Link to this heading">#</a></h2>
+<p>In addition to the outgrowth, the non-brokered deposits sourced from financial technology company partnerships can be stickier and more cost-efficient, analysts said.</p>
+<p><a class="reference external" href="https://www.spglobal.com/market-intelligence/en/news-insights/research/banking-as-a-service-providers-grow-deposits-despite-q1-turmoil"><img alt="Community Banks" src="_images/community_bank.png" /></a></p>
+<p>BaaS providers that specialize in payments, such as Pathward Financial Inc. and The Bancorp Inc., typically set up highly transactional accounts that store smaller balances for payment purposes, said Frank Schiraldi, an analyst at Piper Sandler. This makes the majority of their deposits qualified to be insured by the Federal Deposit Insurance Corp.</p>
+<p>“I would double down on that notion that they really have little- to no-run dynamics. Because the end users are not really trying to get a return, they’re just looking for payment solutions,” Schiraldi said in an interview.</p>
+<p>The deposit base of Pathward primarily consists of accounts with an average balance of less than <span class="math notranslate nohighlight">\(1,000, the bank has disclosed. At The Bancorp, the bank had \)</span>6.70 billion in total deposits as of March 31, and an estimated $643.9 million of it, or less than 10%, were not insured by the FDIC, according to a Form 10-Q filed in May.</p>
+<p>The Bancorp’s deposit base represents about 50 fintech programs, including those with PayPal Holdings Inc. and Chime Financial Inc., said President and CEO Damian Kozlowski. The deposit base is relatively small, but it can drive a high volume of transactions, Kozlowski said.
+“There’s a lot of throughput through all [our] programs. It’s not like the deposits are all parked here,” Kozlowski said in an interview.</p>
+<p>Keefe Bruyette &amp; Woods’ Perito also noted that the cost of those deposits are under contractual rates that both parties have agreed to. While other banks are racing to win customers with high yields, BaaS providers are less impacted by competitive market forces, even with stiffer competition for deposits.</p>
+<p>“They’ve got pretty good negotiating power with the partners just because there are such limited banks that really do this,” Schiraldi said.</p>
+<p>Stride Bank NA, Lead Bank, MVB Bank Inc. and Column NA were the BaaS providers who grew deposits by over 20% sequentially in the first quarter, according to Market Intelligence data.</p>
+</section>
+<section id="a-unique-focus-on-fee-income">
+<h2>A Unique Focus on Fee Income:<a class="headerlink" href="#a-unique-focus-on-fee-income" title="Link to this heading">#</a></h2>
+<p><a class="reference external" href="https://www.spglobal.com/market-intelligence/en/news-insights/research/banking-as-a-service-providers-grow-deposits-despite-q1-turmoil"><img alt="BaaS Providers Deposit Increase" src="_images/baas_providers_deposit_increase_q12023.png" /></a></p>
+<p>Potential new regulatory rules requiring banks to strengthen their capital positions should not be a concern to many BaaS providers, Piper Sandler’s Schiraldi said. BaaS providers often have excess capital that they do not want to use to significantly grow the balance sheet because they are incentivized to stay under $10 billion in total assets, to be exempted from the Durbin amendment, which limits interchange fees.
+“I don’t think they’ll be impacted to the degree of others,” Schiraldi said. “Their business model in general would make them less susceptible to concerns over capital.”</p>
+<p>Unlike the traditional banking model that focuses on asset and deposit growth to boost net interest margin, BaaS providers like Rogersville, Tenn.-based Thread Bank deploy more resources to pursue noninterest income to drive returns on equity, said John Bearden, chief banking officer at Thread Bank. By processing payments for fintech partners, Thread Bank earns interchange fees that are not necessarily correlated to the size of its balance sheet.”</p>
+<p><a class="reference external" href="https://www.spglobal.com/market-intelligence/en/news-insights/research/banking-as-a-service-providers-grow-deposits-despite-q1-turmoil"><img alt="BaaS Providers Loan Growth" src="_images/baas_providers_loan_q12023.png" /></a></p>
+<p>source: <a class="reference external" href="https://www.spglobal.com/market-intelligence/en/news-insights/research/banking-as-a-service-providers-grow-deposits-despite-q1-turmoil">https://www.spglobal.com/market-intelligence/en/news-insights/research/banking-as-a-service-providers-grow-deposits-despite-q1-turmoil</a></p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="6-regulatory.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Regulatory</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="8-sources.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">&lt;no title&gt;</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Current Trends in BaaS</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#the-great-bank-unbundling">“The Great Bank Unbundling”</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#allowing-community-banks-to-win">Allowing Community Banks To Win</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#banking-as-a-service-still-boosts-banks-deposits-but-has-its-risks">“Banking as a service still boosts banks’ deposits but has its risks”</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#consequences-of-baas-adoption">Consequences of BaaS Adoption:</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#banking-as-a-service-providers-grow-deposits-despite-q1-turmoil">“Banking-as-a-service providers grow deposits despite Q1 turmoil”</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deposits-of-high-quality">Deposits of High Quality:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-unique-focus-on-fee-income">A Unique Focus on Fee Income:</a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The Jupyter Book Community
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
