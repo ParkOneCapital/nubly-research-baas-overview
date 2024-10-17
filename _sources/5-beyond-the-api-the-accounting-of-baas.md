@@ -1,6 +1,6 @@
 # Beyond the API: The Accounting of BaaS (FBO vs. On-Core)
 
-While APIs are the technical backbone connecting BaaS providers to banks, the financial structure banks use to do accounting for BaaS providers is known as the For-Benefit-Of account. In a traditional bank institution on-core platforms are used to open accounts for their clients, however, when interfacing with BaaS providers, banks use a For-Benefit-Of account.
+While APIs are the technical backbone connecting BaaS providers to banks, the ecosystem can use various accounting structures to interface as BaaS partners. The most common types are the For-Benefit-Of and the On-Core accounts. There are technical, regulatory and business implications depending on the type of accounting structure chosen.
 
 “What is the difference between FBO and on-core banking?
 
